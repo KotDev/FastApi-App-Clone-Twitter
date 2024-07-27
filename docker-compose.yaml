@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: tweet_db_skillbox
+    image: postgres
+    mem_limit: 1GB
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_BD: tweet_api
