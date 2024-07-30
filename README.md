@@ -99,7 +99,8 @@
 Устанавливаем все зависимости
 ```bash
   pip install poetry
-  poetry install```
+  poetry install
+```
 
 Запускаем приложение
 ```bash
