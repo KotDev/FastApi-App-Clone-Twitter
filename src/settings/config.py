@@ -3,11 +3,11 @@ from pathlib import Path
 from pydantic_settings import BaseSettings
 from pydantic import BaseModel
 
-BASE_DIR = Path(__file__).resolve().parent.parent / "src"
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class DBSettings(BaseModel):
-    url_db: str = "postgresql+asyncpg://root:root@localhost:5434/tweet_api"
+    url_db: str = "postgresql+asyncpg://root:root@db:5432/tweet_api"
 
 
 class MediaSettings(BaseModel):
@@ -28,6 +28,7 @@ class TweetSettings(BaseModel):
 
 class UserSettings(BaseModel):
     error_type: str = "UserError"
+
 
 class Settings(BaseSettings):
     user_settings: UserSettings = UserSettings()

@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseModel
 from pydantic.types import List
 
@@ -15,7 +13,7 @@ class UserSchemaResponse(BaseModel):
 
 class TweetCreateSchema(BaseModel):
     tweet_data: str
-    tweet_media_ids: Optional[List[int]] = []
+    tweet_media_ids: List[int] = []
 
 
 class TweetResponseSchema(BaseModel):

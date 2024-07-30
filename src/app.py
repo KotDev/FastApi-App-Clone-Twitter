@@ -1,25 +1,31 @@
 import os
 
-from fastapi import FastAPI
-from src.database.manager import model_manager
+from fastapi import FastAPI, Request
+from starlette.responses import HTMLResponse
+
+from database.manager import model_manager
 from settings.router import api_router
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 
 app = FastAPI()
 app.include_router(api_router)
-app.mount("", StaticFiles(directory=os.path.abspath("static")), name="static")
+app.mount(
+    "/", StaticFiles(directory=os.path.abspath("static"), html=True), name="static"
+)
 
 
 @app.on_event("startup")
 async def startup_event():
     await model_manager.init_models()
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
     await model_manager.clear_models()
+    await model_manager.create_test_user()
+
+
+@app.get("/", response_class=HTMLResponse)
+async def get_root(request: Request) -> HTMLResponse:
+    return HTMLResponse("index.html")
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)

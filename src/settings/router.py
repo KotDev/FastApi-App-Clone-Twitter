@@ -8,5 +8,3 @@ api_router = APIRouter(prefix="/api", tags=["API"])
 api_router.include_router(user_router)
 api_router.include_router(media_router)
 api_router.include_router(tweet_router)
-
-

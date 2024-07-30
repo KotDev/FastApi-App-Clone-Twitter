@@ -1,5 +1,8 @@
 version: "3.9"
 
+networks:
+  tweet_network:
+
 services:
   db:
     container_name: tweet_db_skillbox
@@ -8,8 +11,29 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
     ports:
-      - "5434:5432"
+      - "5436:5432"
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_BD: tweet_api
+      POSTGRES_DB: tweet_api
+    networks:
+      - tweet_network
+
+  tweet_api:
+    container_name: tweet_api_skillbox
+    mem_limit: 1GB
+    build: ./src
+    ports:
+      - "8000:8000"
+    networks:
+      - tweet_network
+
+  test_api:
+    container_name: test_api_skillbox
+    mem_limit: 1GB
+    build: ./tests
+    command: ["sh", "-c", "pytest && exit 0"]
+    depends_on:
+      - tweet_api
+    networks:
+      - tweet_network
