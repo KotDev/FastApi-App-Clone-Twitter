@@ -39,7 +39,6 @@ async def get_user_router(
     operation: UserOperations = Depends(get_user_operations),
 ):
     result: UserInfoSchema = await operation.get_user(user_id)
-    print(result)
     return result
 
 
