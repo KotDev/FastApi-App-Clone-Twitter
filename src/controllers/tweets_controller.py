@@ -29,7 +29,6 @@ async def get_all_tweets_router(
     request: Request, operation: TweetOperations = Depends(get_operation_tweets)
 ):
     result: TweetsFeed = await operation.get_all_tweets()
-    print(result)
     return result
 
 
