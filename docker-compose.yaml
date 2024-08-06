@@ -2,6 +2,7 @@ version: "3.9"
 
 networks:
   tweet_network:
+    driver: bridge
 
 services:
   db:
@@ -25,6 +26,17 @@ services:
     build: ./src
     ports:
       - "8000:8000"
+    networks:
+      - tweet_network
+
+  frontend:
+    mem_limit: 1GB
+    build:
+      context: ./front
+    ports:
+      - "8080:80"
+    depends_on:
+      - tweet_api
     networks:
       - tweet_network
 

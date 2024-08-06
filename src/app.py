@@ -10,9 +10,6 @@ import uvicorn
 
 app = FastAPI()
 app.include_router(api_router)
-app.mount(
-    "/", StaticFiles(directory=os.path.abspath("static"), html=True), name="static"
-)
 
 
 @app.on_event("startup")
@@ -24,7 +21,7 @@ async def startup_event():
 
 @app.get("/", response_class=HTMLResponse)
 async def get_root(request: Request) -> HTMLResponse:
-    return HTMLResponse("index.html")
+    return HTMLResponse("API is Working")
 
 
 if __name__ == "__main__":
