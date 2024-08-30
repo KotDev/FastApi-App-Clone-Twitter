@@ -121,5 +121,5 @@
 
 ## Автор
 
-- [@OreoLand](https://github.com/OreoLand123)
+- [@KotDev](https://github.com/KotDev)
 
