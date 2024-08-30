@@ -2,7 +2,7 @@
 ![Logo](https://i.pinimg.com/564x/62/d5/f7/62d5f72202c8bb96a2b77227c8061af0.jpg)
 
 
-# Clone Twitter
+# Clone Twitter (Pet-project)
 
  
 
